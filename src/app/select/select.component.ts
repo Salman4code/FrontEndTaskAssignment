@@ -27,7 +27,7 @@ export class SelectComponent implements OnInit {
     console.log(this.searchText);
     
     this.options = this.itemsCopy.filter((tag)=> {
-        if(tag.name){
+        if(tag.title){
           return tag.title.indexOf(term) >= 0;
         }else{
           if(tag.indexOf(term)>=0){
@@ -44,9 +44,9 @@ selectAll(){
 }
 
 checkedBoxClicked(i){
-  console.log(i);
   this.isOptionChecked[i] = ! this.isOptionChecked[i];
   if(this.isOptionChecked[i]){
+    //adding element 
     this.selectOption.push(this.itemsCopy[i]);
   }else{
     // remove selected element from array
