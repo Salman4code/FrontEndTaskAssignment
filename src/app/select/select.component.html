@@ -2,17 +2,29 @@
   <option value="Colours">Colours</option>
 </select> -->
 <div (click)="selectClick();">
-{{selectedColor}} <ng-container *ngIf="result"> {{result}}</ng-container>
+{{selectedColor}} <ng-container *ngIf="result"> - {{result}}</ng-container>
 </div>
 <ul class="list" *ngIf="showDropDown">
-  <input type="text" [(ngModel)]="searchText" (ngModelChange) = "search()">
-  <li><input type="checkbox" (click)="selectAll()">Select All</li>
+  <ng-container *ngIf="searchable">
+      <input type="text" [(ngModel)]="searchText" (ngModelChange) = "search()" placeholder="search">
+  </ng-container>
+  <ng-container *ngIf="multiselect">
+      <li><input type="checkbox" (click)="selectAll()" [checked]="isOptionChecked.selectAll">Select All</li>
+  </ng-container>
   <li *ngFor="let option of options;let i=index">
-    <ng-container *ngIf="!option.title"><input type="checkbox" [checked]="isOptionChecked[i] || isOptionChecked.selectAll" (change)="checkedBoxClicked(i)"><span>{{option}}</span>
+    <ng-container *ngIf="multiselect">
+        <input type="checkbox" [checked]="isOptionChecked[i] || isOptionChecked.selectAll" (change)="checkedBoxClicked(i)">
+            <!-- <input type="checkbox" [checked]="isOptionChecked[i] || isOptionChecked.selectAll"> -->
     </ng-container>
-    <ng-container *ngIf="option.title">
-        <input type="checkbox" [checked]="isOptionChecked[i] || isOptionChecked.selectAll"><span>{{option.title}}</span>
-    </ng-container>
+    <ng-container *ngIf="!option.title"><span>{{option}}</span>
+        </ng-container>
+        <ng-container *ngIf="option.title">
+            <span>{{option.title}}</span>
+          </ng-container>
+    <!-- <ng-container *ngIf="!multiselect">
+
+    </ng-container> -->
+
   </li>
   <div class="drop-down-button"><button (click)="clearResult()">Clear</button>   <button (click)="submit()"> Submit</button></div>
 </ul>
