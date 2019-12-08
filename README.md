@@ -6,8 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 git clone 
 
 ## Step to start project
-cd FrontEndTaskAssignment
-Enter `ng serve` in terminal or command prompt will start your project.
+cd `FrontEndTaskAssignment`
 
 ## Development server
 
